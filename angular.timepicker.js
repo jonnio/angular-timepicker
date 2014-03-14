@@ -223,6 +223,10 @@ angular.module('dnTimepicker', ['ui.bootstrap.position', 'dateParser'])
                     }
                 });
 
+                //if the model is an ISO string or a millisecond offset, attempt to create a date out of it
+                if (angular.isString(ngModel.$modelValue)) {
+                    ngModel.$modelValue = new Date(ngModel.$modelValue);
+                }
                 // Set initial value
                 if(!angular.isDate(ngModel.$modelValue)) {
                     ngModel.$setViewValue(new Date());
